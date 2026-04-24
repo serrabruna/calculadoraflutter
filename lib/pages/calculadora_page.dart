@@ -1,3 +1,4 @@
+import 'package:calculadoraflutter/widgets/botoes.dart';
 import 'package:flutter/material.dart';
 
 class CalculadoraPage extends StatefulWidget {
@@ -36,4 +37,5 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
       ),
     );
   }
+
 }
