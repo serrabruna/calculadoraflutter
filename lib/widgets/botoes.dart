@@ -78,12 +78,15 @@ class Botoes extends StatelessWidget {
       ),
     );
   }
+
+
+
   Widget _botaoC(String numero, VoidCallback onPressed) {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(85, 85),
+          minimumSize: Size(170, 85),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -93,19 +96,20 @@ class Botoes extends StatelessWidget {
       ),
     );
   }
-Widget _botaoIcone(Icon simbolo, VoidCallback onPressed) {
-  return Padding(
-    padding: const EdgeInsets.all(8),
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(85, 85),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+
+  Widget _botaoIcone(Icon simbolo, VoidCallback onPressed) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(85, 85),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
         ),
+        onPressed: onPressed,
+        child: simbolo,
       ),
-      onPressed: onPressed,
-      child: simbolo, 
-    ),
-  );
-}
+    );
+  }
 }
