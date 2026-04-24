@@ -1,4 +1,5 @@
 import 'package:calculadoraflutter/pages/calculadora_page.dart';
+import 'package:calculadoraflutter/widgets/botoes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.deepPurple),
-      home: const CalculadoraPage(),
+      home: const Botoes(),
     );
   }
 }

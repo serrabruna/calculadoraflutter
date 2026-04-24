@@ -16,37 +16,45 @@ class Botoes extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _botaoNumero('7', () {}),
-                _botaoNumero('8', () {}),
-                _botaoNumero('9', () {}),
-                _botaoOperacao('÷', () {}),
+                _botao('7', () {}),
+                _botao('8', () {}),
+                _botao('9', () {}),
+                _botao('÷', () {}),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _botaoNumero('4', () {}),
-                _botaoNumero('5', () {}),
-                _botaoNumero('6', () {}),
-                _botaoOperacao('×', () {}),
+                _botao('4', () {}),
+                _botao('5', () {}),
+                _botao('6', () {}),
+                _botao('×', () {}),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _botaoNumero('1', () {}),
-                _botaoNumero('2', () {}),
-                _botaoNumero('3', () {}),
-                _botaoOperacao('-', () {}),
+                _botao('1', () {}),
+                _botao('2', () {}),
+                _botao('3', () {}),
+                _botao('-', () {}),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _botaoNumero('0', () {}),
-                _botaoOperacao('.', () {}),
-                _botaoOperacao('=', () {}),
-                _botaoOperacao('+', () {}),
+                _botao('0', () {}),
+                _botao('.', () {}),
+                _botao('=', () {}),
+                _botao('+', () {}),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _botaoC('C', () {}),
+                _botao('%', () {}),
+                _botaoIcone(Icon(Icons.arrow_back), () {}),
               ],
             ),
           ],
@@ -55,7 +63,7 @@ class Botoes extends StatelessWidget {
     );
   }
 
-  Widget _botaoNumero(String numero, VoidCallback onPressed) {
+  Widget _botao(String numero, VoidCallback onPressed) {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
@@ -70,8 +78,7 @@ class Botoes extends StatelessWidget {
       ),
     );
   }
-
-  Widget _botaoOperacao(String simbolo, VoidCallback onPressed) {
+  Widget _botaoC(String numero, VoidCallback onPressed) {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
@@ -82,11 +89,23 @@ class Botoes extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(
-          simbolo,
-          style: TextStyle(fontSize: 24, color: Colors.black),
-        ),
+        child: Text(numero, style: TextStyle(fontSize: 24)),
       ),
     );
   }
+Widget _botaoIcone(Icon simbolo, VoidCallback onPressed) {
+  return Padding(
+    padding: const EdgeInsets.all(8),
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(85, 85),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      onPressed: onPressed,
+      child: simbolo, 
+    ),
+  );
+}
 }
