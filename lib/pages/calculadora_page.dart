@@ -1,4 +1,3 @@
-import 'package:calculadoraflutter/widgets/botoes.dart';
 import 'package:flutter/material.dart';
 
 class CalculadoraPage extends StatefulWidget {
@@ -9,13 +8,48 @@ class CalculadoraPage extends StatefulWidget {
 }
 
 class _CalculadoraPageState extends State<CalculadoraPage> {
+  Widget _botaoNumero(String numero, VoidCallback onPressed) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(75, 75),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Text(numero, style: TextStyle(fontSize: 24)),
+      ),
+    );
+  }
+
+  Widget _botaoOperacao(String simbolo, VoidCallback onPressed) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(75, 75),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Text(
+          simbolo,
+          style: TextStyle(fontSize: 24, color: Colors.black),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: 
-      Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SafeArea(
             child: Column(
@@ -36,14 +70,62 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
-                Botoes(),
               ],
             ),
+          ),
+          SizedBox(height: 35),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _botaoOperacao('C', () {}),
+                  _botaoOperacao('%', () {}),
+                  _botaoOperacao('<--', () {}),
+                  _botaoOperacao('÷', () {}),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _botaoNumero('7', () {}),
+                  _botaoNumero('8', () {}),
+                  _botaoNumero('9', () {}),
+                  _botaoOperacao('×', () {}),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _botaoNumero('4', () {}),
+                  _botaoNumero('5', () {}),
+                  _botaoNumero('6', () {}),
+                  _botaoOperacao('-', () {}),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _botaoNumero('1', () {}),
+                  _botaoNumero('2', () {}),
+                  _botaoNumero('3', () {}),
+                  _botaoOperacao('+', () {}),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _botaoNumero('0', () {}),
+                  _botaoNumero('.', () {}),
+                  _botaoOperacao('=', () {}),
+                ],
+              ),
+            ],
           ),
         ],
       ),
     );
   }
-
 }
