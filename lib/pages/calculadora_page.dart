@@ -9,6 +9,8 @@ class CalculadoraPage extends StatefulWidget {
 
 class _CalculadoraPageState extends State<CalculadoraPage> {
   late TextEditingController _displayController;
+  double _valorAnterior = 0;
+  String _operacao = '';
 
   @override
   void initState() {
@@ -25,6 +27,16 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
       }
     });
   }
+
+  void _limpar() {
+    setState(() {
+      _displayController.text = '0';
+      _valorAnterior = 0;
+      _operacao = '';
+    });
+  }
+
+  
 
   Widget _botaoNumero(String numero, VoidCallback onPressed) {
     return Padding(
@@ -69,7 +81,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _botaoOperacao('C', () {}),
+            _botaoOperacao('C', () => _limpar()),
             _botaoOperacao('%', () {}),
             _botaoOperacao('<--', () {}),
             _botaoOperacao('÷', () {}),
