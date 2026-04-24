@@ -67,12 +67,22 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
         }
         break;
       case '%':
-        resultado = _valorAnterior % valorAtual;
+        resultado = _valorAnterior * (valorAtual / 100);
         break;
     }
 
     setState(() {
       _displayController.text = resultado % 1 == 0 ? resultado.toInt().toString() : resultado.toString();
+    });
+  }
+
+  void _apagar(){
+    setState((){
+      if(_displayController.text.length > 1){
+        _displayController.text = _displayController.text.substring(0, _displayController.text.length - 1);
+      } else {
+        _displayController.text = '0';
+      }
     });
   }
 
@@ -87,7 +97,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
           ),
         ),
         onPressed: onPressed,
-        child: Text(numero, style: TextStyle(fontSize: 24)),
+        child: Text(numero, style: TextStyle(fontSize: 24, color: Colors.deepPurple[300])),
       ),
     );
   }
@@ -97,6 +107,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue[50],
           minimumSize: Size(75, 75),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
@@ -105,7 +116,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
         onPressed: onPressed,
         child: Text(
           simbolo,
-          style: TextStyle(fontSize: 24, color: Colors.black),
+          style: TextStyle(fontSize: 24, color: Colors.deepPurple[400]),
         ),
       ),
     );
@@ -121,7 +132,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
           children: [
             _botaoOperacao('C', () => _limpar()),
             _botaoOperacao('%', () => _pressionarBotaoOperacao('%')),
-            _botaoOperacao('<--', () {}),
+            _botaoOperacao('<--', () => _apagar()),
             _botaoOperacao('÷', () => _pressionarBotaoOperacao('÷')),
           ],
         ),
@@ -167,7 +178,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.pink[50],
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -183,11 +194,16 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
                     style: const TextStyle(fontSize: 32),
                     readOnly: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(
+                      enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 169, 198, 223), width: 2),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 169, 198, 223), width: 2),
                       ),
                       filled: true,
-                      fillColor: Colors.blue[100],
+                      fillColor: Colors.blue[50],
                     ),
                   ),
                 ),
