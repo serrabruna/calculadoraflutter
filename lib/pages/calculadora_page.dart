@@ -11,6 +11,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   late TextEditingController _displayController;
   double _valorAnterior = 0;
   String _operacao = '';
+  
 
   @override
   void initState() {
@@ -36,7 +37,44 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
     });
   }
 
-  
+  void _pressionarBotaoOperacao(String op){
+    _valorAnterior = double.tryParse(_displayController.text) ?? 0;
+    _operacao = op;
+    setState(() {
+      _displayController.text = '0';
+    });
+  }
+
+  void _calcularResultado() {
+    double valorAtual = double.tryParse(_displayController.text) ?? 0;
+    double resultado = 0;
+
+    switch (_operacao) {
+      case '+':
+        resultado = _valorAnterior + valorAtual;
+        break;
+      case '-':
+        resultado = _valorAnterior - valorAtual;
+        break;
+      case '×':
+        resultado = _valorAnterior * valorAtual;
+        break;
+      case '÷':
+        if (valorAtual != 0) {
+          resultado = _valorAnterior / valorAtual;
+        } else {
+          resultado = _valorAnterior;
+        }
+        break;
+      case '%':
+        resultado = _valorAnterior % valorAtual;
+        break;
+    }
+
+    setState(() {
+      _displayController.text = resultado % 1 == 0 ? resultado.toInt().toString() : resultado.toString();
+    });
+  }
 
   Widget _botaoNumero(String numero, VoidCallback onPressed) {
     return Padding(
@@ -82,9 +120,9 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _botaoOperacao('C', () => _limpar()),
-            _botaoOperacao('%', () {}),
+            _botaoOperacao('%', () => _pressionarBotaoOperacao('%')),
             _botaoOperacao('<--', () {}),
-            _botaoOperacao('÷', () {}),
+            _botaoOperacao('÷', () => _pressionarBotaoOperacao('÷')),
           ],
         ),
         Row(
@@ -93,7 +131,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
             _botaoNumero('7', () => _pressionarBotao('7')),
             _botaoNumero('8', () => _pressionarBotao('8')),
             _botaoNumero('9', () => _pressionarBotao('9')),
-            _botaoOperacao('×', () {}),
+            _botaoOperacao('×', () => _pressionarBotaoOperacao('×')),
           ],
         ),
         Row(
@@ -102,7 +140,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
             _botaoNumero('4', () => _pressionarBotao('4')),
             _botaoNumero('5', () => _pressionarBotao('5')),
             _botaoNumero('6', () => _pressionarBotao('6')),
-            _botaoOperacao('-', () {}),
+            _botaoOperacao('-', () => _pressionarBotaoOperacao('-')),
           ],
         ),
         Row(
@@ -111,15 +149,15 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
             _botaoNumero('1', () => _pressionarBotao('1')),
             _botaoNumero('2', () => _pressionarBotao('2')),
             _botaoNumero('3', () => _pressionarBotao('3')),
-            _botaoOperacao('+', () {}),
+            _botaoOperacao('+', () => _pressionarBotaoOperacao('+')),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _botaoNumero('0', () => _pressionarBotao('0')),
-            _botaoNumero('.', () {}),
-            _botaoOperacao('=', () {}),
+            _botaoNumero('.', () => _pressionarBotao('.')),
+            _botaoOperacao('=', () => _calcularResultado()),
           ],
         ),
       ],
