@@ -5,13 +5,7 @@ class Botoes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Botoes"),
-      ),
-      body: Center(
-        child: Column(
+    return Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,9 +44,7 @@ class Botoes extends StatelessWidget {
               ],
             ),
           ],
-        ),
-      ),
-    );
+        );
   }
 
   Widget _botaoNumero(String numero, VoidCallback onPressed) {
@@ -60,7 +52,7 @@ class Botoes extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(85, 85),
+          minimumSize: Size(75, 75),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -76,7 +68,7 @@ class Botoes extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(85, 85),
+          minimumSize: Size(75, 75),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),

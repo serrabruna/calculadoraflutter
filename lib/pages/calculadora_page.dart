@@ -1,3 +1,4 @@
+import 'package:calculadoraflutter/widgets/botoes.dart';
 import 'package:flutter/material.dart';
 
 class CalculadoraPage extends StatefulWidget {
@@ -12,27 +13,35 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 32),
-                readOnly: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+      body: 
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SafeArea(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  child: TextField(
+                    textAlign: TextAlign.right,
+                    style: const TextStyle(fontSize: 32),
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      filled: true,
+                      fillColor: Colors.blue[100],
+                      hintText: '0',
+                    ),
                   ),
-                  filled: true,
-                  fillColor: Colors.blue[100],
-                  hintText: '0',
                 ),
-              ),
+                SizedBox(height: 30),
+                Botoes(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
